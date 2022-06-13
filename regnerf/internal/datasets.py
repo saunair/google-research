@@ -271,7 +271,7 @@ def transform_poses_to_hemisphere(poses, bounds):
   poses_recentered[:, :3, 3] *= scale_factor
   bounds_recentered = bounds * scale_factor
 
-  return poses_recentered, bounds_recentered
+  return poses_recentered, bounds_recentered, scale_factor
 
 
 def subsample_patches(images, patch_size, batch_size, batching='all_images'):
