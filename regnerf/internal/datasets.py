@@ -1005,9 +1005,11 @@ class LLFF(Dataset):
 
     # Separate out 360 versus forward facing scenes.
     if config.remap_to_hemisphere:
-      poses, bounds = transform_poses_to_hemisphere(poses, bounds)
+      poses, bounds, scale_factor = transform_poses_to_hemisphere(poses, bounds)
       self.render_poses = generate_hemispherical_orbit(
           poses, n_frames=config.render_path_frames)
+      self.near *=scale
+      self.far *=scale
     else:
       self.render_poses = generate_spiral_path(
           poses, bounds, n_frames=config.render_path_frames)
